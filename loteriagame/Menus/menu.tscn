@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwypnuob3fudy"]
+
+[ext_resource type="Script" path="res://Menus/menu.gd" id="1_wg3bj"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ws106"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wg3bj")
+
+[node name="TitleScreen" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MultiplayerScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HostButton" type="Button" parent="MultiplayerScreen"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+text = "HOST"
+
+[node name="JoinButton" type="Button" parent="MultiplayerScreen"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 168.0
+offset_bottom = 104.0
+text = "JOIN"
+
+[node name="StartButton" type="Button" parent="MultiplayerScreen"]
+visible = false
+layout_mode = 0
+offset_top = 192.0
+offset_right = 168.0
+offset_bottom = 232.0
+text = "CONFIRM"
+
+[node name="AddressEntry" type="LineEdit" parent="MultiplayerScreen"]
+visible = false
+layout_mode = 0
+offset_top = 128.0
+offset_right = 168.0
+offset_bottom = 168.0
+placeholder_text = "Enter address here"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ws106")
+
+[connection signal="pressed" from="MultiplayerScreen/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MultiplayerScreen/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="MultiplayerScreen/StartButton" to="." method="_on_start_button_pressed"]

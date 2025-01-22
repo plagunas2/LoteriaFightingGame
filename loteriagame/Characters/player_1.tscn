@@ -1,20 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqfhphx7v7dx0"]
+[gd_scene load_steps=8 format=3 uid="uid://bqfhphx7v7dx0"]
 
 [ext_resource type="Script" path="res://Characters/player_1.gd" id="1_23ylm"]
+[ext_resource type="Texture2D" uid="uid://nn5h4ffrbmdm" path="res://pixil-frame-1.webp" id="2_66y61"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bkk8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_elc8b"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hahn"]
+atlas = ExtResource("2_66y61")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjsb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hahn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="CigarGuy" type="CharacterBody3D"]
 script = ExtResource("1_23ylm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1bkk8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_elc8b")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.2186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.64753)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_hjsb1")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fadj4")
