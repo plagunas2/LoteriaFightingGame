@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
-"speed": 12.0
+"speed": 20.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
@@ -140,8 +140,8 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
 animation = &"Walk"
-frame = 4
-frame_progress = 0.810929
+frame = 5
+frame_progress = 0.743241
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")

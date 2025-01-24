@@ -30,6 +30,7 @@ func _physics_process(delta):
 	if direction:
 		animation.play("Walk")
 		velocity.x = direction.x * SPEED
+		animation.flip_h = direction.x > 0
 		#velocity.z = direction.z * SPEED
 	else:
 		animation.play("Idle")
