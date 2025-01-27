@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bqfhphx7v7dx0"]
+[gd_scene load_steps=30 format=3 uid="uid://bqfhphx7v7dx0"]
 
 [ext_resource type="Script" path="res://Characters/player_1.gd" id="1_23ylm"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_rk58e"]
 [ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_671vf"]
+[ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_slxms"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bkk8"]
 
@@ -60,6 +61,38 @@ region = Rect2(448, 0, 64, 64)
 atlas = ExtResource("3_671vf")
 region = Rect2(512, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg0xg"]
+atlas = ExtResource("4_slxms")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d07tp"]
+atlas = ExtResource("4_slxms")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q0vl"]
+atlas = ExtResource("4_slxms")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nep0"]
+atlas = ExtResource("4_slxms")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhh02"]
+atlas = ExtResource("4_slxms")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h564"]
+atlas = ExtResource("4_slxms")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkbb"]
+atlas = ExtResource("4_slxms")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srcmh"]
+atlas = ExtResource("4_slxms")
+region = Rect2(448, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hjsb1"]
 animations = [{
 "frames": [{
@@ -110,6 +143,35 @@ animations = [{
 "loop": true,
 "name": &"Walk",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg0xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d07tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q0vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nep0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h564")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srcmh")
+}],
+"loop": true,
+"name": &"basicPunch",
+"speed": 13.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
@@ -139,9 +201,9 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Walk"
-frame = 5
-frame_progress = 0.743241
+animation = &"basicPunch"
+frame = 2
+frame_progress = 0.911649
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
