@@ -26,7 +26,7 @@ func process_physics(delta: float) -> State:
 	#parent.velocity.x = direction.x * SPEED
 	#parent.animation.flip_h = direction.x > 0
 	
-	if direction == 0:
+	if !direction:
 		return idle_state
 	
 	parent.animations.flip_h = direction.x > 0

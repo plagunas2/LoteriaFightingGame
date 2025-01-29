@@ -1,13 +1,10 @@
 extends State
 
+@export
+var idle_state: State
 
-const SPEED = 5.0
-
-@export
-var fall_state: State
-@export
-var jump_state: State
-@export
-var move_state: State
-@export
-var punch_state: State
+func process_frame(delta: float) -> State:
+	#change state after completing animation
+	if parent.animations.get_frame() == 7:
+		return idle_state
+	return null

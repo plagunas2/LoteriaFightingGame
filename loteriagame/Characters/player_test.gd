@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+const SPEED = 5.0
+
 @onready
 var animations = $AnimatedSprite3D
 @onready
