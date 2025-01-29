@@ -1,96 +1,101 @@
-[gd_scene load_steps=30 format=3 uid="uid://bqfhphx7v7dx0"]
+[gd_scene load_steps=35 format=3 uid="uid://buqk56wkmvgct"]
 
-[ext_resource type="Script" path="res://Characters/player_1.gd" id="1_23ylm"]
-[ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_rk58e"]
-[ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_671vf"]
-[ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_slxms"]
+[ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
+[ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
+[ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_qridd"]
+[ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_a5mfj"]
+[ext_resource type="Script" path="res://Characters/StateMachine/state_machine.gd" id="5_cn4kh"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/idle.gd" id="6_ql63x"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/move.gd" id="7_csewp"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/punch.gd" id="8_gu08w"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bkk8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_elc8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1pr5"]
-atlas = ExtResource("2_rk58e")
+atlas = ExtResource("2_8ws8c")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nm34"]
-atlas = ExtResource("2_rk58e")
+atlas = ExtResource("2_8ws8c")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4k58m"]
-atlas = ExtResource("2_rk58e")
+atlas = ExtResource("2_8ws8c")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1a4bv"]
-atlas = ExtResource("2_rk58e")
+atlas = ExtResource("2_8ws8c")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b510r"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hyql"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4715d"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05arg"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bl2e"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3cwd"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66msf"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xgp8"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cane2"]
-atlas = ExtResource("3_671vf")
+atlas = ExtResource("3_qridd")
 region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg0xg"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d07tp"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q0vl"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nep0"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhh02"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h564"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikkbb"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srcmh"]
-atlas = ExtResource("4_slxms")
+atlas = ExtResource("4_a5mfj")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hjsb1"]
@@ -182,8 +187,8 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="ElCatrin" type="CharacterBody3D"]
-script = ExtResource("1_23ylm")
+[node name="ElCatrinTest" type="CharacterBody3D"]
+script = ExtResource("1_um4m4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1bkk8")
@@ -210,3 +215,26 @@ spawn_path = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fadj4")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_cn4kh")
+starting_state = NodePath("Fall")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("6_ql63x")
+animation_name = "Idle"
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("7_csewp")
+idle_state = NodePath("../Idle")
+animation_name = "Walk"
+
+[node name="Punch" type="Node" parent="StateMachine"]
+script = ExtResource("8_gu08w")
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("9_rboho")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+
+[node name="Jump" type="Node" parent="StateMachine"]
