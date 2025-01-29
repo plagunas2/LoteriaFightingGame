@@ -4,28 +4,40 @@ var my_peer_id
 var player
 var type
 var num_players = 1
+var player_list = []
+@export var offline = false
+var player_id = 1 #used for offline play, leave at 1 otherwise
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	my_peer_id = self.name.to_int()
+	if not offline:
+		my_peer_id = self.name.to_int()
 
 func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
-	if !is_multiplayer_authority():
-		self.hide()
+	if not offline:
+		set_multiplayer_authority(str(name).to_int())
+		if !is_multiplayer_authority():
+			self.hide()
+
+
 
 func _on_confirm_button_pressed():
 	print(type)
-	for i in range(0,num_players):
-		if num_players > 1:
-			$Label.text = "Choose Character for Player "+str(i+1)
-		player = load(type).instantiate()
-		player.position = Vector3(0,5,0)
-		player.name = name+str(i+1)
-		print(player.name)
-		player.id = str(i+1)
-		add_child(player)
-	self.hide()
+	player = load(type).instantiate()
+	player.position = Vector3(0,5,0)
+	player.name = name+str(player_id)
+	print(player.name)
+	player.id = str(player_id)
+	player.offline = true
+	player_list.append(player)
+	player_id += 1
+	if player_id > num_players:
+		for p in player_list:
+			add_child(p)
+		self.hide()
+	else:
+		$Label.text = "Choose Character for Player "+str(player_id)
+		$ConfirmButton.hide()
 
 func _on_cigar_guy_button_pressed():
 	type = "res://Characters/player_1.tscn"
@@ -33,6 +45,7 @@ func _on_cigar_guy_button_pressed():
 
 func set_num_players(num):
 	num_players = num
-	
-func set_player_id(id):
-	$Label.text = "Choose Character for player "+id
+	if num_players > 1:
+		$Label.text = "Choose Character for Player 1"
+	else:
+		$Label.text = "Choose Character"

@@ -4,16 +4,18 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var id = 0
+@export var offline = false
 
 func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
+	if not offline:
+		set_multiplayer_authority(str(name).to_int())
 
 func _ready():
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority() and not offline: return
 	$Camera3D.current = true
 
 func _physics_process(delta):
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority() and not offline: return
 	
 	# Add the gravity.
 	if not is_on_floor():

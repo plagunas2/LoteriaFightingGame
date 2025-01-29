@@ -15,10 +15,11 @@ func _ready():
 func startOfflineGame(num_players):
 	print("signal received to start offline game")
 	main_menu.hide()
-	var player0 = CharacterSelection.instantiate()
-	player0.set_num_players(num_players)
-	player0.name = "Player"
-	add_child(player0)
+	var players = CharacterSelection.instantiate()
+	players.offline = true
+	players.set_num_players(num_players)
+	players.name = "Player"
+	add_child(players)
 	
 
 func joinAddressEntered(address):
