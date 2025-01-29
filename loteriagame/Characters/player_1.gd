@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var id = 0
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -19,12 +20,12 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("up")) and is_on_floor():
+	if (Input.is_action_just_pressed("jump"+id) or Input.is_action_just_pressed("up"+id)) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
+	var input_dir = Input.get_vector("left"+id, "right"+id, "up"+id, "down"+id)
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
