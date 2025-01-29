@@ -28,7 +28,7 @@ offset_bottom = 320.0
 text = "CONFIRM"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Characters/player_1.tscn", "")
+_spawnable_scenes = PackedStringArray("res://Characters/player_1.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CigarGuyButton" to="." method="_on_cigar_guy_button_pressed"]
