@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var animation = $AnimatedSprite3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -27,10 +28,18 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		animation.play("Walk")
 		velocity.x = direction.x * SPEED
+		animation.flip_h = direction.x > 0
 		#velocity.z = direction.z * SPEED
 	else:
+		animation.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		#velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	#checkAttack() #this is not quite working
+	
+func checkAttack():
+	if (Input.is_action_just_pressed("attack")) and is_on_floor():
+		animation.play("basicPunch")
