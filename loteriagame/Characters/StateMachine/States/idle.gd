@@ -11,6 +11,8 @@ var jump_state: State
 var move_state: State
 @export
 var punch_state: State
+@export
+var damage_state: State
 
 func enter() -> void:
 	super()
@@ -32,3 +34,5 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return fall_state
 	return null
+	
+	
