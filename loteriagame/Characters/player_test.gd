@@ -8,6 +8,7 @@ var animations = $AnimatedSprite3D
 var state_machine = $StateMachine
 
 var health = 50
+var power = 0
 
 func _ready() -> void:
 	
