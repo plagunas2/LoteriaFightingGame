@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=52 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -317,7 +317,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"basicPunch"
+animation = &"Kick"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
