@@ -7,6 +7,9 @@ var animations = $AnimatedSprite3D
 @onready
 var state_machine = $StateMachine
 
+var health = 50
+var power = 0
+
 func _ready() -> void:
 	
 	if not is_multiplayer_authority(): return
