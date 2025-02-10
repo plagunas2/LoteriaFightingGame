@@ -1,17 +1,18 @@
-[gd_scene load_steps=45 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=51 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
 [ext_resource type="Texture2D" uid="uid://praaqpqekx76" path="res://Assets/ElCatrin/catrinJumpWIP.png" id="2_gnvm8"]
 [ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_qridd"]
 [ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_a5mfj"]
+[ext_resource type="Texture2D" uid="uid://dtivohyqb7pk5" path="res://Assets/ElCatrin/catrinKick.png" id="4_dugaf"]
 [ext_resource type="Script" path="res://Characters/StateMachine/state_machine.gd" id="5_cn4kh"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/idle.gd" id="6_ql63x"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/move.gd" id="7_csewp"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/punch.gd" id="8_gu08w"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
-[ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="12_3cp14"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="13_qhp35"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -58,6 +59,30 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_22vxo"]
 atlas = ExtResource("2_gnvm8")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2yyt"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0q8s"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrbkn"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yq2f"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cul8y"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb2wl"]
+atlas = ExtResource("4_dugaf")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b510r"]
 atlas = ExtResource("3_qridd")
@@ -176,6 +201,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_r2yyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0q8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrbkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yq2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cul8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb2wl")
+}],
+"loop": true,
+"name": &"Kick",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_b510r")
 }, {
 "duration": 1.0,
@@ -270,8 +318,6 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
 animation = &"basicPunch"
-frame = 1
-frame_progress = 0.995236
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -319,9 +365,6 @@ move_state = NodePath("../Move")
 animation_name = "Jump"
 
 [node name="Kick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("12_3cp14")
+script = ExtResource("13_qhp35")
 idle_state = NodePath("../Idle")
-
-[connection signal="body_entered" from="HitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
-[connection signal="body_entered" from="HitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
-[connection signal="animation_finished" from="AnimatedSprite3D" to="StateMachine/Punch" method="_on_animated_sprite_3d_animation_finished"]
+animation_name = "Kick"
