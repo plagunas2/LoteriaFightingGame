@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=45 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/punch.gd" id="8_gu08w"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="12_3cp14"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bkk8"]
 
@@ -230,7 +233,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"basicPunch",
-"speed": 13.0
+"speed": 12.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
@@ -243,6 +246,12 @@ properties/1/replication_mode = 1
 
 [node name="ElCatrinTest" type="CharacterBody3D"]
 script = ExtResource("1_um4m4")
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.458825, 0.0850431, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1bkk8")
@@ -260,9 +269,9 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Jump"
+animation = &"basicPunch"
 frame = 1
-frame_progress = 0.668447
+frame_progress = 0.995236
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -274,12 +283,13 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "kick_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
 move_state = NodePath("../Move")
 punch_state = NodePath("../Punch")
+kick_state = NodePath("../Kick")
 animation_name = "Idle"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state")]
@@ -307,3 +317,11 @@ fall_state = NodePath("../Fall")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 animation_name = "Jump"
+
+[node name="Kick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("12_3cp14")
+idle_state = NodePath("../Idle")
+
+[connection signal="body_entered" from="HitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="HitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite3D" to="StateMachine/Punch" method="_on_animated_sprite_3d_animation_finished"]
