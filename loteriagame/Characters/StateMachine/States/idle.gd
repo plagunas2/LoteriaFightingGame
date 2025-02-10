@@ -11,6 +11,8 @@ var jump_state: State
 var move_state: State
 @export
 var punch_state: State
+@export
+var kick_state: State
 
 func enter() -> void:
 	super()
@@ -23,6 +25,8 @@ func process_input(event: InputEvent) -> State:
 		return move_state
 	if Input.is_action_just_pressed("attack") and parent.is_on_floor():
 		return punch_state
+	if Input.is_action_just_pressed("kick")	and parent.is_on_floor():
+		return kick_state
 	return null
 
 func process_physics(delta: float) -> State:
