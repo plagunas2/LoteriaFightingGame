@@ -30,7 +30,7 @@ func process_physics(delta: float) -> State:
 	
 	#parent.animations.flip_h = direction.x > 0
 	#parent.velocity.x = direction.x * SPEED
-	#parent.move_and_slide()
+	#
 	
 	if direction:
 		parent.velocity.x = direction.x * SPEED
@@ -40,14 +40,9 @@ func process_physics(delta: float) -> State:
 		parent.rpc("sync_movement", parent.global_transform.origin, parent.velocity, "Idle", parent.animations.flip_h)
 		return idle_state
 	
+	parent.move_and_slide()
+	
 	if !parent.is_on_floor():
 		return fall_state
 	return null
 	
-@rpc("any_peer", "call_local")
-func sync_movement(new_position: Vector3, new_velocity: Vector3, anim_name: String, flip_h: bool):
-	if not parent.is_multiplayer_authority():  # Clients update their state based on server data
-		parent.global_transform.origin = new_position
-		parent.velocity = new_velocity
-		parent.animations.play(anim_name)
-		parent.animations.flip_h = flip_h

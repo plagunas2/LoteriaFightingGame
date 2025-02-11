@@ -29,3 +29,18 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+	
+#networking funcs
+
+@rpc("any_peer", "call_local")
+func sync_movement(new_position: Vector3, new_velocity: Vector3, anim_name: String, flip_h: bool):
+	if not is_multiplayer_authority():  # Only non-authority clients update
+		global_transform.origin = new_position
+		velocity = new_velocity
+		animations.play(anim_name)
+		animations.flip_h = flip_h
+		
+@rpc("any_peer", "call_local")
+func sync_attack_animation():
+	# All clients should see the attack animation
+	animations.play("basicPunch")
