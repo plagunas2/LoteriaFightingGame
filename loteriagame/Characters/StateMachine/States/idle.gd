@@ -32,6 +32,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if not parent.is_multiplayer_authority(): return
+	
 	parent.velocity.x = move_toward(parent.velocity.x, 0, SPEED)
 	parent.move_and_slide()
 	

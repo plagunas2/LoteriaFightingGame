@@ -10,6 +10,9 @@ var state_machine = $StateMachine
 var health = 50
 var power = 0
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+	
 func _ready() -> void:
 	
 	if not is_multiplayer_authority(): return

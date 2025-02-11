@@ -20,6 +20,7 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	#parent.velocity.y = JUMP_VELOCITY
+	if not parent.is_multiplayer_authority(): return
 	
 	if parent.velocity.y > 0:
 		return fall_state

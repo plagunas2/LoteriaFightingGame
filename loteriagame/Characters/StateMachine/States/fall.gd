@@ -9,6 +9,9 @@ var idle_state: State
 var move_state: State
 
 func process_physics(delta: float) -> State:
+	
+	if not parent.is_multiplayer_authority(): return
+	
 	#apply gravity
 	parent.velocity += parent.get_gravity() * delta
 	
