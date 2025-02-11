@@ -6,6 +6,8 @@ const SPEED = 5.0
 var animations = $AnimatedSprite3D
 @onready
 var state_machine = $StateMachine
+@onready
+var hitbox = $HitBox
 
 var health = 50
 var power = 0

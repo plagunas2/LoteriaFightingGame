@@ -18,7 +18,8 @@ func process_frame(delta: float) -> State:
 	#return idle_state
 	
 func _on_hit_box_body_entered(body: Node3D) -> void: #punch damage
-	if body.get_class() == "Player" && body.get_parent_node_3d() != parent.get_parent_node_3d():
-		print("player has been hit!")
-		if parent.animations.get_frame() == 4 or 5 or 6: #punching frames
-			body.health -= 2
+	if parent.animations.name == "basicPunch":
+		if body is Player and body.id != parent.id:
+			if parent.animations.get_frame() == 4 or 5 or 6: #punching frames
+				print("player " + body.id + "has been punched!")
+				body.health -= 2

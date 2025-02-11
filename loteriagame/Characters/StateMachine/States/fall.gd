@@ -8,6 +8,9 @@ var idle_state: State
 @export
 var move_state: State
 
+#func _ready() -> void:
+	#parent.hitbox.monitoring = false
+
 func process_physics(delta: float) -> State:
 	
 	if not parent.is_multiplayer_authority() and not parent.offline: return

@@ -368,3 +368,6 @@ animation_name = "Jump"
 script = ExtResource("13_qhp35")
 idle_state = NodePath("../Idle")
 animation_name = "Kick"
+
+[connection signal="body_entered" from="HitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="HitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]

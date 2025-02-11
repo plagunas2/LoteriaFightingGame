@@ -10,7 +10,8 @@ func process_frame(delta: float) -> State:
 	return null
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
-	if body.get_class() == "Player" && body.get_parent_node_3d() != parent.get_parent_node_3d():
-		print("player has been hit!")
-		if parent.animations.get_frame() == 3 or 4 or 5: #kicking frames
-			body.health -= 2
+	if parent.animations.name == "Kick":
+		if body is Player and body.id != parent.id:
+			print("player" + body.id + "has been kicked!")
+			if parent.animations.get_frame() == 3 or 4 or 5: #kicking frames
+				body.health -= 2
