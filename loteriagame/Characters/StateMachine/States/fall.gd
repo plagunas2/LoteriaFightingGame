@@ -10,15 +10,15 @@ var move_state: State
 
 func process_physics(delta: float) -> State:
 	
-	if not parent.is_multiplayer_authority(): return
+	if not parent.is_multiplayer_authority() and not parent.offline: return
 	
 	#apply gravity
 	parent.velocity += parent.get_gravity() * delta
 	
 	var direction = Vector3.ZERO
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left"+parent.id):
 		direction.x -= 1
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right"+parent.id):
 		direction.x += 1
 		
 	if direction != Vector3.ZERO:

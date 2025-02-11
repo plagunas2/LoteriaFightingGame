@@ -41,7 +41,6 @@ func _physics_process(delta):
 		#velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	#checkAttack() #this is not quite working
 	
 func checkAttack():
 	if (Input.is_action_just_pressed("attack")) and is_on_floor():

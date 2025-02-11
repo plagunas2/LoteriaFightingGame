@@ -9,13 +9,16 @@ var state_machine = $StateMachine
 
 var health = 50
 var power = 0
+var id = 0
+@export var offline = false
 
 func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
+	if not offline:
+		set_multiplayer_authority(str(name).to_int())
 	
 func _ready() -> void:
 	
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority() and not offline: return
 	$Camera3D.current = true
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
