@@ -35,6 +35,7 @@ func process_physics(delta: float) -> State:
 	if direction:
 		parent.velocity.x = direction.x * SPEED
 		parent.animations.flip_h = direction.x > 0
+		hitbox_flip_h(parent.animations.flip_h)
 		parent.rpc("sync_movement", parent.global_transform.origin, parent.velocity, "Walk", parent.animations.flip_h)
 	else:
 		parent.rpc("sync_movement", parent.global_transform.origin, parent.velocity, "Idle", parent.animations.flip_h)
@@ -46,3 +47,11 @@ func process_physics(delta: float) -> State:
 		return fall_state
 	return null
 	
+#change positioning of hitbox collision shape to other side if walking in opp direction
+func hitbox_flip_h(flip_h: bool):
+	if flip_h:
+		parent.kick_hitbox.position.x = 0.793
+		parent.punch_hitbox.position.x = 0.694
+	else:
+		parent.kick_hitbox.position.x = -0.793
+		parent.punch_hitbox.position.x = -0.694

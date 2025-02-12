@@ -8,8 +8,10 @@ func process_frame(delta: float) -> State:
 	#if parent.is_multiplayer_authority():
 		# Sync the attack animation across the network
 		#parent.rpc("sync_attack_animation")
-	#change state after completing animation
+	#change state after completing animation, disable punch collision
 	if parent.animations.get_frame() == 7:
+		parent.punch_hitbox.disabled = true
+		print("punch hitbox collision disabled =  " + str(parent.punch_hitbox.disabled))
 		return idle_state
 	return null
 
@@ -18,8 +20,7 @@ func process_frame(delta: float) -> State:
 	#return idle_state
 	
 func _on_hit_box_body_entered(body: Node3D) -> void: #punch damage
-	if parent.animations.name == "basicPunch":
-		if body is Player and body.id != parent.id:
-			if parent.animations.get_frame() == 4 or 5 or 6: #punching frames
-				print("player " + body.id + "has been punched!")
-				body.health -= 2
+	if body is Player and body.id != parent.id:
+		if parent.animations.get_frame() == 4 or 5 or 6: #punching frames
+			print("player " + body.id + "has been punched!")
+			body.health -= 2

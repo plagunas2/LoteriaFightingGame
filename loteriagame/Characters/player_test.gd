@@ -7,7 +7,10 @@ var animations = $AnimatedSprite3D
 @onready
 var state_machine = $StateMachine
 @onready
-var hitbox = $HitBox
+var punch_hitbox = $PunchHitBox/HitCollision
+@onready
+var kick_hitbox = $KickHitBox/HitCollision
+#var original_kick_hitbox_pos = kick_hitbox.position.x
 
 var health = 50
 var power = 0
