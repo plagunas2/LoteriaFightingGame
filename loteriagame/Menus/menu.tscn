@@ -15,12 +15,33 @@ offset_bottom = 40.0
 script = ExtResource("1_wg3bj")
 
 [node name="TitleScreen" type="Control" parent="."]
-visible = false
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="OnlineButton" type="Button" parent="TitleScreen"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+text = "PLAY ONLINE"
+
+[node name="OfflineButton" type="Button" parent="TitleScreen"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 168.0
+offset_bottom = 104.0
+text = "PLAY OFFLINE"
+
+[node name="QuitButton" type="Button" parent="TitleScreen"]
+layout_mode = 0
+offset_top = 192.0
+offset_right = 168.0
+offset_bottom = 232.0
+text = "QUIT"
+
 [node name="MultiplayerScreen" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -54,12 +75,69 @@ offset_right = 168.0
 offset_bottom = 168.0
 placeholder_text = "Enter address here"
 
+[node name="OnlineBackButton" type="Button" parent="MultiplayerScreen"]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 168.0
+offset_bottom = 424.0
+text = "BACK"
+
+[node name="OfflineScreen" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TwoButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+text = "TWO PLAYERS"
+
+[node name="ThreeButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 168.0
+offset_bottom = 104.0
+text = "THREE PLAYERS"
+
+[node name="FourButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 168.0
+offset_bottom = 168.0
+text = "FOUR PLAYERS"
+
+[node name="OfflineStartButton" type="Button" parent="OfflineScreen"]
+visible = false
+layout_mode = 0
+offset_top = 192.0
+offset_right = 168.0
+offset_bottom = 232.0
+text = "CONFIRM"
+
+[node name="OfflineBackButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 168.0
+offset_bottom = 424.0
+text = "BACK"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ws106")
 
+[connection signal="pressed" from="TitleScreen/OnlineButton" to="." method="_on_online_button_pressed"]
+[connection signal="pressed" from="TitleScreen/OfflineButton" to="." method="_on_offline_button_pressed"]
+[connection signal="pressed" from="TitleScreen/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MultiplayerScreen/OnlineBackButton" to="." method="_on_online_back_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/TwoButton" to="." method="_on_two_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/ThreeButton" to="." method="_on_three_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/FourButton" to="." method="_on_four_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/OfflineStartButton" to="." method="_on_offline_start_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/OfflineBackButton" to="." method="_on_offline_back_button_pressed"]

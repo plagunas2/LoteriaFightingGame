@@ -20,11 +20,12 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	#parent.velocity.y = JUMP_VELOCITY
+	if not parent.is_multiplayer_authority() and not parent.offline: return
 	
 	if parent.velocity.y > 0:
 		return fall_state
 		
-	var input_dir = Input.get_vector("left", "right", "up", "down")
+	var input_dir = Input.get_vector("left"+parent.id, "right"+parent.id, "up"+parent.id, "down"+parent.id)
 	var direction = (parent.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#var movement = Input.get_axis('move_left', 'move_right') * move_speed
 	

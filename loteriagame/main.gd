@@ -10,6 +10,17 @@ const CharacterSelection = preload("res://Menus/character_selection_screen.tscn"
 func _ready():
 	main_menu.connect("addressEntered", joinAddressEntered)
 	main_menu.connect("hostWorldStart", startHost)
+	main_menu.connect("startOfflineGame", startOfflineGame)
+	
+func startOfflineGame(num_players):
+	print("signal received to start offline game")
+	main_menu.hide()
+	var players = CharacterSelection.instantiate()
+	players.offline = true
+	players.set_num_players(num_players)
+	players.name = "Player"
+	add_child(players)
+	
 
 func joinAddressEntered(address):
 	main_menu.hide()
