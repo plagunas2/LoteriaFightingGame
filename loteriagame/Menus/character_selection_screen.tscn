@@ -15,6 +15,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qq07j")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(2.31028e-06, 0.669149, 0.917026, 1)
+
 [node name="CigarGuyButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -33,7 +42,6 @@ keep_pressed_outside = true
 icon = ExtResource("2_l5u5v")
 
 [node name="ConfirmButton" type="Button" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -41,8 +49,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -64.0
-offset_top = -64.0
+offset_top = -90.0
 offset_right = 64.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "CONFIRM"
@@ -56,14 +65,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -69.0
-offset_right = 69.0
-offset_bottom = 23.0
+offset_left = -232.5
+offset_top = 45.0
+offset_right = 232.5
+offset_bottom = 79.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_a8pa2")
+theme_override_font_sizes/font_size = 30
 text = "Choose Character"
 
 [node name="Bean" parent="." instance=ExtResource("4_e0aio")]
+layout_mode = 0
 
 [node name="BeanManager" type="Node" parent="."]
 script = ExtResource("5_nvr7g")

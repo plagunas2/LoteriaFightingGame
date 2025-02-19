@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	
 func create_bean():
 	var new_bean = load(bean).instantiate()
-	add_child(new_bean)
+	print(str(get_parent()))
+	get_parent().add_child(new_bean)
 	
 	
