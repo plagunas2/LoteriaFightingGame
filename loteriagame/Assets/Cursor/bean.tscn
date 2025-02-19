@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://erbbpxdywnga"]
+
+[ext_resource type="Texture2D" uid="uid://bostx2acaehpj" path="res://Assets/Cursor/bean.png" id="1_wo10l"]
+[ext_resource type="Script" path="res://Assets/Cursor/bean.gd" id="1_ydx0j"]
+
+[node name="Bean" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_ydx0j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("1_wo10l")

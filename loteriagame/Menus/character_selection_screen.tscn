@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlwdcdy7fcj1l"]
+[gd_scene load_steps=6 format=3 uid="uid://dlwdcdy7fcj1l"]
 
 [ext_resource type="Script" path="res://Menus/character_selection_screen.gd" id="1_qq07j"]
-[ext_resource type="Texture2D" uid="uid://nn5h4ffrbmdm" path="res://pixil-frame-1.webp" id="1_spy8l"]
+[ext_resource type="Texture2D" uid="uid://d0j855htgefne" path="res://Assets/ElCatrin/catrinCard.png" id="2_l5u5v"]
+[ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="3_a8pa2"]
+[ext_resource type="PackedScene" uid="uid://erbbpxdywnga" path="res://Assets/Cursor/bean.tscn" id="4_e0aio"]
+[ext_resource type="Script" path="res://Menus/bean_manager.gd" id="5_nvr7g"]
 
 [node name="CharacterSelectionScreen" type="Control"]
 layout_mode = 3
@@ -13,19 +16,35 @@ grow_vertical = 2
 script = ExtResource("1_qq07j")
 
 [node name="CigarGuyButton" type="Button" parent="."]
-layout_mode = 0
-offset_top = 64.0
-offset_right = 72.0
-offset_bottom = 136.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -147.0
+offset_right = -34.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
 keep_pressed_outside = true
-icon = ExtResource("1_spy8l")
+icon = ExtResource("2_l5u5v")
 
 [node name="ConfirmButton" type="Button" parent="."]
 visible = false
-layout_mode = 0
-offset_top = 256.0
-offset_right = 128.0
-offset_bottom = 320.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "CONFIRM"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -33,10 +52,22 @@ _spawnable_scenes = PackedStringArray("res://Characters/player_1.tscn")
 spawn_path = NodePath("..")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -69.0
+offset_right = 69.0
 offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_a8pa2")
 text = "Choose Character"
 
+[node name="Bean" parent="." instance=ExtResource("4_e0aio")]
+
+[node name="BeanManager" type="Node" parent="."]
+script = ExtResource("5_nvr7g")
+
 [connection signal="pressed" from="CigarGuyButton" to="." method="_on_cigar_guy_button_pressed"]
+[connection signal="pressed" from="CigarGuyButton" to="Bean" method="_on_cigar_guy_button_pressed"]
 [connection signal="pressed" from="ConfirmButton" to="." method="_on_confirm_button_pressed"]

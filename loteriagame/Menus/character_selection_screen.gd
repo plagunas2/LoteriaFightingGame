@@ -7,6 +7,7 @@ var num_players = 1
 var player_list = []
 @export var offline = false
 var player_id = 1 #used for offline play, leave at 1 otherwise
+@onready var bean_manager = $BeanManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +37,7 @@ func _on_confirm_button_pressed():
 			add_child(p)
 		self.hide()
 	else:
+		bean_manager.create_bean()
 		$Label.text = "Choose Character for Player "+str(player_id)
 		$ConfirmButton.hide()
 
