@@ -54,6 +54,7 @@ offset_right = 64.0
 offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_a8pa2")
 text = "CONFIRM"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
