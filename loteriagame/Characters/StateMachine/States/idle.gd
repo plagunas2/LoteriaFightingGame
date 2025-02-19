@@ -39,12 +39,13 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if not parent.is_multiplayer_authority() and not parent.offline: return
-	
 	parent.velocity.x = move_toward(parent.velocity.x, 0, SPEED)
 	parent.move_and_slide()
-	
 	if !parent.is_on_floor():
 		return fall_state
 	return null
+	
+func damage() -> State:
+	return damage_state
 	
 	

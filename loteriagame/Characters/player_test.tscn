@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dwkdrncd5gq40"]
+[gd_scene load_steps=53 format=3 uid="uid://dwkdrncd5gq40"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="13_qhp35"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/damage.gd" id="14_0xxa0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -339,12 +340,13 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "kick_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
 move_state = NodePath("../Move")
 punch_state = NodePath("../Punch")
+damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
 animation_name = "Idle"
 
@@ -361,23 +363,28 @@ script = ExtResource("8_gu08w")
 idle_state = NodePath("../Idle")
 animation_name = "basicPunch"
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "damage_state")]
 script = ExtResource("9_rboho")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+damage_state = NodePath("../Damage")
 animation_name = "Fall"
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "damage_state")]
 script = ExtResource("10_q603b")
 fall_state = NodePath("../Fall")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+damage_state = NodePath("../Damage")
 animation_name = "Jump"
 
 [node name="Kick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("13_qhp35")
 idle_state = NodePath("../Idle")
 animation_name = "Kick"
+
+[node name="Damage" type="Node" parent="StateMachine"]
+script = ExtResource("14_0xxa0")
 
 [connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]

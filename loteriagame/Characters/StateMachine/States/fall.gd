@@ -7,6 +7,8 @@ const AIR_CONTROL = 0.5
 var idle_state: State
 @export
 var move_state: State
+@export
+var damage_state: State
 
 #func _ready() -> void:
 	#parent.hitbox.monitoring = false
@@ -37,3 +39,6 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	
 	return null
+	
+func damage() -> State:
+	return damage_state

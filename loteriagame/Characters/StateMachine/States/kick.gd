@@ -16,3 +16,6 @@ func _on_hit_box_body_entered(body: Node3D) -> void:
 		print("player " + body.id + " has been kicked!")
 		if parent.animations.get_frame() == 3 or 4 or 5: #kicking frames
 			body.health -= 2
+			if str(body.get_node("StateMachine").current_state) != "Damage":
+				print("damage taken")
+				body.get_node("StateMachine").current_state.damage()

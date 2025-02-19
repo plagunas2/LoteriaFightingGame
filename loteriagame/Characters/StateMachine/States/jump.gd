@@ -9,6 +9,8 @@ var fall_state: State
 var idle_state: State
 @export
 var move_state: State
+@export
+var damage_state: State
 
 @export
 var jump_force: float = 900.0
@@ -41,3 +43,6 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	
 	return null
+
+func damage() -> State:
+	return damage_state
