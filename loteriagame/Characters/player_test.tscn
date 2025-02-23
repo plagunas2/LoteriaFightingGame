@@ -368,3 +368,7 @@ animation_name = "Jump"
 script = ExtResource("13_qhp35")
 idle_state = NodePath("../Idle")
 animation_name = "Kick"
+
+[node name="OutOfBoundsTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]
