@@ -11,8 +11,10 @@ var animations = $AnimatedSprite3D
 var state_machine = $StateMachine
 
 var health = 50
-var lives = 2
+var lives = 1
 var power = 0
+
+var player_id = 1
 
 func _ready() -> void:
 	
@@ -22,6 +24,12 @@ func _ready() -> void:
 	# that way they can move and react accordingly
 	self.position = starting_position
 	state_machine.init(self)
+	
+#	Set position of health bar
+	if player_id == 1:
+		$CanvasLayer/HealthBar.position = Vector2(8, 616)
+	elif player_id == 2:
+		$CanvasLayer/HealthBar.position = Vector2(952, 616)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -33,7 +41,8 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func set_health(new_health):
-	self.health = new_health
+	health = new_health
+	$CanvasLayer/HealthBar.value = health
 	if health > MAX_HEALTH:
 		health = 50
 	if health < 0:

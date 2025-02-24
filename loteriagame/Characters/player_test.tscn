@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=54 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="13_qhp35"]
+[ext_resource type="Texture2D" uid="uid://dvxydc7fypeor" path="res://Assets/UI/healthbarUnder.png" id="14_yoxc8"]
+[ext_resource type="Texture2D" uid="uid://0v5rtht0woo5" path="res://Assets/UI/healthbarProgress.png" id="15_qkdcf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -183,7 +185,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 12.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,7 +319,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Kick"
+animation = &"Idle"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -370,5 +372,17 @@ idle_state = NodePath("../Idle")
 animation_name = "Kick"
 
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 616.0
+offset_right = 200.0
+offset_bottom = 643.0
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("14_yoxc8")
+texture_progress = ExtResource("15_qkdcf")
 
 [connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]
