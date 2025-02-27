@@ -46,6 +46,7 @@ func process_physics(delta: float) -> State:
 	return null
 	
 func damage() -> State:
+	print("transitioning to damage")
 	return damage_state
 	
 	
