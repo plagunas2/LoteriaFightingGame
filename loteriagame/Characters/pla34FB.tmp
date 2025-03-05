@@ -440,13 +440,12 @@ damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
 animation_name = "Idle"
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state", "damage_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state")]
 script = ExtResource("7_csewp")
 fall_state = NodePath("../Fall")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 punch_state = NodePath("../Punch")
-damage_state = NodePath("../Damage")
 animation_name = "Walk"
 
 [node name="Punch" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]

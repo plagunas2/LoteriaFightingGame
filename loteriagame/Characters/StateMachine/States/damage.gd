@@ -9,7 +9,9 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if !parent.is_on_floor():
+		parent.velocity += parent.get_gravity() * delta
+		parent.move_and_slide()
 	
 func process_frame(delta: float) -> State:
 	if parent.animations.get_frame() == 11:
