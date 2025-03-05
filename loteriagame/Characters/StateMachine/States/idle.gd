@@ -23,8 +23,8 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump'+parent.id) and parent.is_on_floor():
 		return jump_state
-	if Input.is_action_just_pressed('left'+parent.id) or Input.is_action_just_pressed('right'+parent.id):
-		return move_state
+	#if Input.is_action_just_pressed('left'+parent.id) or Input.is_action_just_pressed('right'+parent.id):
+		#return move_state
 	if Input.is_action_just_pressed('attack'+parent.id) and parent.is_on_floor():
 		#enable punch collision
 		parent.punch_hitbox.disabled = false
@@ -39,12 +39,23 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if not parent.is_multiplayer_authority() and not parent.offline: return
-	parent.velocity.x = move_toward(parent.velocity.x, 0, SPEED)
+	
+	var input_dir = Input.get_vector("left"+parent.id, "right"+parent.id, "up"+parent.id, "down"+parent.id)
+	var direction = (parent.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if direction == Vector3.ZERO:
+		parent.velocity.x = move_toward(parent.velocity.x, 0, SPEED)
+	else:
+		return move_state
+		
 	parent.move_and_slide()
+	
 	if !parent.is_on_floor():
 		return fall_state
-	return null
 	
+	return null
+	#var input_dir = Input.get_vector("left"+id, "right"+id, "up"+id, "down"+id)
+	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 func damage() -> State:
 	print("transitioning to damage")
 	return damage_state
