@@ -10,6 +10,8 @@ var idle_state: State
 var jump_state: State
 @export
 var punch_state: State
+@export
+var damage_state: State
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump'+parent.id) and parent.is_on_floor():
@@ -55,3 +57,6 @@ func hitbox_flip_h(flip_h: bool):
 	else:
 		parent.kick_hitbox.position.x = -0.793
 		parent.punch_hitbox.position.x = -0.694
+
+func damage() -> State:
+	return damage_state
