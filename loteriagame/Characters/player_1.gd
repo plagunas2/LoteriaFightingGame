@@ -11,9 +11,9 @@ func _enter_tree():
 	if not offline:
 		set_multiplayer_authority(str(name).to_int())
 
-func _ready():
-	if not is_multiplayer_authority() and not offline: return
-	$Camera3D.current = true
+#func _ready():
+	#if not is_multiplayer_authority(): return
+	#$Camera3D.current = true
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and not offline: return

@@ -25,7 +25,7 @@ func _enter_tree():
 func _on_confirm_button_pressed():
 	print(type)
 	player = load(type).instantiate()
-	player.position = Vector3(0,5,0)
+	player.starting_position = Vector3(0,1,0)
 	player.name = name+str(player_id)
 	print(player.name)
 	player.id = str(player_id)

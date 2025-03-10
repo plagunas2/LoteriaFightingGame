@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_bw8y6"]
 [ext_resource type="PackedScene" uid="uid://dwypnuob3fudy" path="res://Menus/menu.tscn" id="2_hvtis"]
-[ext_resource type="PackedScene" uid="uid://ckfroylynj0a8" path="res://Levels/level_1.tscn" id="3_42ovg"]
+[ext_resource type="PackedScene" uid="uid://1a47jniwv0q7" path="res://Levels/level_2.tscn" id="3_qvcj7"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mcmxk"]
 
@@ -11,11 +11,11 @@ script = ExtResource("1_bw8y6")
 
 [node name="Menu" parent="." instance=ExtResource("2_hvtis")]
 
-[node name="Level1" parent="." instance=ExtResource("3_42ovg")]
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Menus/character_selection_screen.tscn", "res://Characters/player_1.tscn")
 spawn_path = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_mcmxk")
+
+[node name="Level1" parent="." instance=ExtResource("3_qvcj7")]

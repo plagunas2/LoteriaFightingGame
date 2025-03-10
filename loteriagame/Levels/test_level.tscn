@@ -37,8 +37,5 @@ mesh = SubResource("BoxMesh_3xlus")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_5ptde")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14842, 3.07027)
-
 [node name="ElCatrinTest" parent="." instance=ExtResource("1_64bnv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49938, 0)
