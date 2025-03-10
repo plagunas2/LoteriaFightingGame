@@ -25,10 +25,10 @@ func _enter_tree():
 func _on_confirm_button_pressed():
 	print(type)
 	player = load(type).instantiate()
-	player.starting_position = Vector3(0,1,0)
+	
 	player.name = name+str(player_id)
 	print(player.name)
-	player.id = str(player_id)
+	player.id_set(player_id)
 	player.offline = true
 	player_list.append(player)
 	player_id += 1

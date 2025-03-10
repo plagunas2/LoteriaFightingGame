@@ -23,6 +23,13 @@ var id = 0
 
 var player_id = 1
 
+func _enter_tree():
+	#Set position of health bar
+	if player_id == 1:
+		$CanvasLayer/HealthBar.position = Vector2(8, 616)
+	elif player_id == 2:
+		$CanvasLayer/HealthBar.position = Vector2(952, 616)
+
 func _ready() -> void:
 	
 	if not is_multiplayer_authority(): return
@@ -31,12 +38,6 @@ func _ready() -> void:
 	# that way they can move and react accordingly
 	self.position = starting_position
 	state_machine.init(self)
-	
-#	Set position of health bar
-	if player_id == 1:
-		$CanvasLayer/HealthBar.position = Vector2(8, 616)
-	elif player_id == 2:
-		$CanvasLayer/HealthBar.position = Vector2(952, 616)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -46,6 +47,16 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+	
+func id_set(player_id):
+	id = str(player_id)
+	print(id)
+	if id=="1":
+		starting_position = Vector3(-6,1,0)
+		$CanvasLayer/HealthBar.position = Vector2(8, 616)
+	elif id=="2":
+		starting_position = Vector3(6,1,0)
+		$CanvasLayer/HealthBar.position = Vector2(952, 616)
 	
 #networking funcs
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=68 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -410,9 +410,6 @@ visible = false
 mesh = SubResource("CapsuleMesh_elc8b")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.64753)
-
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
@@ -481,20 +478,19 @@ script = ExtResource("14_0xxa0")
 idle_state = NodePath("../Idle")
 animation_name = "Damage"
 
-[connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
-[connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 8.0
-offset_top = 616.0
-offset_right = 200.0
-offset_bottom = 643.0
+offset_right = 192.0
+offset_bottom = 30.0
 max_value = 50.0
 value = 50.0
 texture_under = ExtResource("14_yoxc8")
 texture_progress = ExtResource("15_qkdcf")
 
+[connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]
