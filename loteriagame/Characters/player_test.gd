@@ -23,13 +23,6 @@ var id = 0
 
 var player_id = 1
 
-func _enter_tree():
-	#Set position of health bar
-	if player_id == 1:
-		$CanvasLayer/HealthBar.position = Vector2(8, 616)
-	elif player_id == 2:
-		$CanvasLayer/HealthBar.position = Vector2(952, 616)
-
 func _ready() -> void:
 	
 	if not is_multiplayer_authority(): return

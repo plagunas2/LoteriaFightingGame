@@ -27,7 +27,6 @@ func _on_confirm_button_pressed():
 	player = load(type).instantiate()
 	
 	player.name = name+str(player_id)
-	print(player.name)
 	player.id_set(player_id)
 	player.offline = true
 	player_list.append(player)
