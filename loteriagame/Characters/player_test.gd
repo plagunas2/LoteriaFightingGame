@@ -70,12 +70,15 @@ func set_health(new_health):
 	health = new_health
 	$CanvasLayer/HealthBar.value = health
 	if health > MAX_HEALTH:
-		health = 50
+		health = MAX_HEALTH
 	if health < 0:
 		health = 0
 	print(health)
 	if health == 0:
 		die()
+	
+func take_damage(damage):
+	set_health(health-damage)
 
 func die():
 	lives -= 1
