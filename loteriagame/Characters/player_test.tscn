@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=76 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dvxydc7fypeor" path="res://Assets/UI/healthbarUnder.png" id="14_yoxc8"]
 [ext_resource type="Texture2D" uid="uid://0v5rtht0woo5" path="res://Assets/UI/healthbarProgress.png" id="15_qkdcf"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall_kick.gd" id="17_d6te5"]
+[ext_resource type="AudioStream" uid="uid://blejxbdpsa6hw" path="res://Assets/SoundEffects/punch.mp3" id="18_ednej"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
+[ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -542,6 +544,14 @@ max_value = 50.0
 value = 50.0
 texture_under = ExtResource("14_yoxc8")
 texture_progress = ExtResource("15_qkdcf")
+
+[node name="Punch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("18_ednej")
+
+[node name="PlayerName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33363, 0)
+text = "P1"
+font = ExtResource("19_qky2l")
 
 [connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]

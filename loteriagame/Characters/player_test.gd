@@ -24,8 +24,6 @@ var power = 0
 var id = 0
 @export var offline = false
 
-var player_id = 1
-
 func _ready() -> void:
 	
 	if not is_multiplayer_authority(): return
@@ -47,6 +45,7 @@ func _process(delta: float) -> void:
 func id_set(player_id):
 	id = str(player_id)
 	print(id)
+	$PlayerName.text = "P"+id
 	if id=="1":
 		starting_position = Vector3(-6,1,0)
 		$CanvasLayer/HealthBar.position = Vector2(8, 616)
