@@ -13,6 +13,10 @@ var state_machine = $StateMachine
 var punch_hitbox = $PunchHitBox/HitCollision
 @onready
 var kick_hitbox = $KickHitBox/HitCollision
+@onready
+var fall_kick_hitbox1 = $FallKickHitBox1/HitCollision
+@onready
+var fall_kick_hitbox2 = $FallKickHitBox2/HitCollision
 #var original_kick_hitbox_pos = kick_hitbox.position.x
 
 var health = 50

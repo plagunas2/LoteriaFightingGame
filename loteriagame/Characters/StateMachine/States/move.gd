@@ -51,7 +51,7 @@ func process_physics(delta: float) -> State:
 	
 #change positioning of hitbox collision shape to other side if walking in opp direction
 func hitbox_flip_h(flip_h: bool):
-	if flip_h:
+	if flip_h: 
 		parent.kick_hitbox.position.x = 0.793
 		parent.punch_hitbox.position.x = 0.694
 	else:
