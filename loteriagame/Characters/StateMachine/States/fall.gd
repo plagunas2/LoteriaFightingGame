@@ -8,10 +8,21 @@ var idle_state: State
 @export
 var move_state: State
 @export
+var fall_kick_state: State
+@export
 var damage_state: State
 
 #func _ready() -> void:
 	#parent.hitbox.monitoring = false
+	
+func process_input(event: InputEvent) -> State:
+	if Input.is_action_pressed("kick"+parent.id):
+		if parent.animations.flip_h:
+			parent.fall_kick_hitbox2.disabled = false
+		else:
+			parent.fall_kick_hitbox1.disabled = false
+		return fall_kick_state
+	return null
 
 func process_physics(delta: float) -> State:
 	

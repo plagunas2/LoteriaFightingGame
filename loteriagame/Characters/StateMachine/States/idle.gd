@@ -1,6 +1,5 @@
 extends State
 
-
 const SPEED = 5.0
 
 @export
@@ -15,6 +14,8 @@ var punch_state: State
 var damage_state: State
 @export
 var kick_state: State
+@export
+var duck_state: State
 
 func enter() -> void:
 	super()
@@ -35,6 +36,8 @@ func process_input(event: InputEvent) -> State:
 		parent.kick_hitbox.disabled = false
 		print("kick hitbox collision disabled = " + str(parent.kick_hitbox.disabled))
 		return kick_state
+	if Input.is_action_just_pressed("down"+parent.id):
+		return duck_state
 	return null
 
 func process_physics(delta: float) -> State:

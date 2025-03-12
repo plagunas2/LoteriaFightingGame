@@ -20,8 +20,6 @@ func _enter_tree():
 		if !is_multiplayer_authority():
 			self.hide()
 
-
-
 func _on_confirm_button_pressed():
 	print(type)
 	player = load(type).instantiate()

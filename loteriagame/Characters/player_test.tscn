@@ -1,12 +1,14 @@
-[gd_scene load_steps=70 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=76 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
 [ext_resource type="Texture2D" uid="uid://praaqpqekx76" path="res://Assets/ElCatrin/catrinJumpWIP.png" id="2_gnvm8"]
 [ext_resource type="Texture2D" uid="uid://fwjy7ppxw3ok" path="res://Assets/ElCatrin/catrinDamage.png" id="2_k0xgu"]
+[ext_resource type="Texture2D" uid="uid://kogyqr3n7hy7" path="res://Assets/ElCatrin/catrinDuck.png" id="3_oj8ai"]
 [ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_qridd"]
 [ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_a5mfj"]
 [ext_resource type="Texture2D" uid="uid://dtivohyqb7pk5" path="res://Assets/ElCatrin/catrinKick.png" id="4_dugaf"]
+[ext_resource type="Texture2D" uid="uid://da361lb0qqyn6" path="res://Assets/ElCatrin/catrinFallKick.png" id="4_o0ybm"]
 [ext_resource type="Script" path="res://Characters/StateMachine/state_machine.gd" id="5_cn4kh"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/idle.gd" id="6_ql63x"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/move.gd" id="7_csewp"]
@@ -17,7 +19,9 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/damage.gd" id="14_0xxa0"]
 [ext_resource type="Texture2D" uid="uid://dvxydc7fypeor" path="res://Assets/UI/healthbarUnder.png" id="14_yoxc8"]
 [ext_resource type="Texture2D" uid="uid://0v5rtht0woo5" path="res://Assets/UI/healthbarProgress.png" id="15_qkdcf"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/fall_kick.gd" id="17_d6te5"]
 [ext_resource type="AudioStream" uid="uid://blejxbdpsa6hw" path="res://Assets/SoundEffects/punch.mp3" id="18_ednej"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
 [ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
@@ -74,6 +78,10 @@ region = Rect2(640, 0, 64, 64)
 atlas = ExtResource("2_k0xgu")
 region = Rect2(704, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_52hl7"]
+atlas = ExtResource("3_oj8ai")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nax1h"]
 atlas = ExtResource("2_gnvm8")
 region = Rect2(192, 0, 64, 64)
@@ -85,6 +93,10 @@ region = Rect2(256, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3dw0"]
 atlas = ExtResource("2_gnvm8")
 region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xib0"]
+atlas = ExtResource("4_o0ybm")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1pr5"]
 atlas = ExtResource("2_8ws8c")
@@ -251,6 +263,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_52hl7")
+}],
+"loop": true,
+"name": &"Duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nax1h")
 }, {
 "duration": 1.0,
@@ -262,6 +282,14 @@ animations = [{
 "loop": true,
 "name": &"Fall",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xib0")
+}],
+"loop": true,
+"name": &"FallKick",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -278,7 +306,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -404,6 +432,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.79314, 0.000153244, 
 shape = SubResource("BoxShape3D_4mnxw")
 disabled = true
 
+[node name="FallKickHitBox1" type="Area3D" parent="."]
+
+[node name="HitCollision" type="CollisionShape3D" parent="FallKickHitBox1"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.67329, -0.0984662, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
+
+[node name="FallKickHitBox2" type="Area3D" parent="."]
+
+[node name="HitCollision" type="CollisionShape3D" parent="FallKickHitBox2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.718553, -0.0984662, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1bkk8")
 
@@ -417,9 +459,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Damage"
-frame = 1
-frame_progress = 0.580997
+animation = &"Idle"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -431,7 +471,7 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state", "duck_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
@@ -439,6 +479,7 @@ move_state = NodePath("../Move")
 punch_state = NodePath("../Punch")
 damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
+duck_state = NodePath("../Duck")
 animation_name = "Idle"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state", "damage_state")]
@@ -455,10 +496,11 @@ script = ExtResource("8_gu08w")
 idle_state = NodePath("../Idle")
 animation_name = "basicPunch"
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "damage_state")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "fall_kick_state", "damage_state")]
 script = ExtResource("9_rboho")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+fall_kick_state = NodePath("../FallKick")
 damage_state = NodePath("../Damage")
 animation_name = "Fall"
 
@@ -479,6 +521,16 @@ animation_name = "Kick"
 script = ExtResource("14_0xxa0")
 idle_state = NodePath("../Idle")
 animation_name = "Damage"
+
+[node name="FallKick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("17_d6te5")
+idle_state = NodePath("../Idle")
+animation_name = "FallKick"
+
+[node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("19_c6ed6")
+idle_state = NodePath("../Idle")
+animation_name = "Duck"
 
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
 
@@ -503,4 +555,6 @@ font = ExtResource("19_qky2l")
 
 [connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="FallKickHitBox1" to="StateMachine/FallKick" method="_on_fall_kick_hit_box_1_body_entered"]
+[connection signal="body_entered" from="FallKickHitBox2" to="StateMachine/FallKick" method="_on_fall_kick_hit_box_2_body_entered"]
 [connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]
