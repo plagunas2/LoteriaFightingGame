@@ -1,9 +1,10 @@
-[gd_scene load_steps=71 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=74 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
 [ext_resource type="Texture2D" uid="uid://praaqpqekx76" path="res://Assets/ElCatrin/catrinJumpWIP.png" id="2_gnvm8"]
 [ext_resource type="Texture2D" uid="uid://fwjy7ppxw3ok" path="res://Assets/ElCatrin/catrinDamage.png" id="2_k0xgu"]
+[ext_resource type="Texture2D" uid="uid://kogyqr3n7hy7" path="res://Assets/ElCatrin/catrinDuck.png" id="3_oj8ai"]
 [ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_qridd"]
 [ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_a5mfj"]
 [ext_resource type="Texture2D" uid="uid://dtivohyqb7pk5" path="res://Assets/ElCatrin/catrinKick.png" id="4_dugaf"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dvxydc7fypeor" path="res://Assets/UI/healthbarUnder.png" id="14_yoxc8"]
 [ext_resource type="Texture2D" uid="uid://0v5rtht0woo5" path="res://Assets/UI/healthbarProgress.png" id="15_qkdcf"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall_kick.gd" id="17_d6te5"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -73,6 +75,10 @@ region = Rect2(640, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0troq"]
 atlas = ExtResource("2_k0xgu")
 region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52hl7"]
+atlas = ExtResource("3_oj8ai")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nax1h"]
 atlas = ExtResource("2_gnvm8")
@@ -252,6 +258,14 @@ animations = [{
 "loop": true,
 "name": &"Damage",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52hl7")
+}],
+"loop": true,
+"name": &"Duck",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -443,7 +457,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"FallKick"
+animation = &"Idle"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -455,7 +469,7 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state", "duck_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
@@ -463,6 +477,7 @@ move_state = NodePath("../Move")
 punch_state = NodePath("../Punch")
 damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
+duck_state = NodePath("../Duck")
 animation_name = "Idle"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state", "damage_state")]
@@ -509,6 +524,11 @@ animation_name = "Damage"
 script = ExtResource("17_d6te5")
 idle_state = NodePath("../Idle")
 animation_name = "FallKick"
+
+[node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("19_c6ed6")
+idle_state = NodePath("../Idle")
+animation_name = "Duck"
 
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
 
