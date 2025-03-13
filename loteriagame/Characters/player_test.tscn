@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=78 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_psc3g"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
 [ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
 [ext_resource type="AudioStream" uid="uid://b4y2aklub6a3d" path="res://Assets/SoundEffects/wind.mp3" id="23_pfwc5"]
+[ext_resource type="AudioStream" uid="uid://dl0ap7xatvljx" path="res://Assets/SoundEffects/land.mp3" id="24_0cu71"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -551,6 +552,9 @@ stream = ExtResource("18_ednej")
 
 [node name="Smoking" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("23_pfwc5")
+
+[node name="Land" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("24_0cu71")
 
 [node name="PlayerName" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33363, 0)

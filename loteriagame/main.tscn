@@ -12,7 +12,7 @@ script = ExtResource("1_bw8y6")
 [node name="Menu" parent="." instance=ExtResource("2_hvtis")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Menus/character_selection_screen.tscn", "res://Characters/player_1.tscn")
+_spawnable_scenes = PackedStringArray("res://Menus/character_selection_screen.tscn")
 spawn_path = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

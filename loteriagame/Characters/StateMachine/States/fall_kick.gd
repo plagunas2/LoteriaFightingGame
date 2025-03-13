@@ -8,6 +8,7 @@ func process_frame(delta: float) -> State:
 	if parent.is_on_floor():
 		parent.fall_kick_hitbox1.disabled = true
 		parent.fall_kick_hitbox2.disabled = true
+		$"../../Land".play()
 		return idle_state
 	return null
 
