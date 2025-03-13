@@ -1,6 +1,6 @@
-[gd_scene load_steps=76 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=77 format=3 uid="uid://buqk56wkmvgct"]
 
-[ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
+[ext_resource type="Script" path="res://Characters/player_test.gd" id="1_psc3g"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
 [ext_resource type="Texture2D" uid="uid://praaqpqekx76" path="res://Assets/ElCatrin/catrinJumpWIP.png" id="2_gnvm8"]
 [ext_resource type="Texture2D" uid="uid://fwjy7ppxw3ok" path="res://Assets/ElCatrin/catrinDamage.png" id="2_k0xgu"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://blejxbdpsa6hw" path="res://Assets/SoundEffects/punch.mp3" id="18_ednej"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
 [ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
+[ext_resource type="AudioStream" uid="uid://b4y2aklub6a3d" path="res://Assets/SoundEffects/wind.mp3" id="23_pfwc5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -415,8 +416,8 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="ElCatrinTest" type="CharacterBody3D"]
-script = ExtResource("1_um4m4")
+[node name="ElCatrin" type="CharacterBody3D"]
+script = ExtResource("1_psc3g")
 
 [node name="PunchHitBox" type="Area3D" parent="."]
 
@@ -547,6 +548,9 @@ texture_progress = ExtResource("15_qkdcf")
 
 [node name="Punch" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("18_ednej")
+
+[node name="Smoking" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_pfwc5")
 
 [node name="PlayerName" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33363, 0)

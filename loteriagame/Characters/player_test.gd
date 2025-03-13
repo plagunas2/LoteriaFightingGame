@@ -52,6 +52,12 @@ func id_set(player_id):
 	elif id=="2":
 		starting_position = Vector3(6,1,0)
 		$CanvasLayer/HealthBar.position = Vector2(952, 616)
+	elif id =="3":
+		starting_position = Vector3(-3,1,0)
+		$CanvasLayer/HealthBar.position = Vector2(210, 616)
+	elif id == "4":
+		starting_position = Vector3(3,1,0)
+		$CanvasLayer/HealthBar.position = Vector2(752, 616)
 	
 #networking funcs
 

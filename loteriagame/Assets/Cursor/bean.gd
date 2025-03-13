@@ -2,7 +2,7 @@ extends Control
 
 var mouse_position
 var card_selected
-@onready var button = $"../CigarGuyButton"
+@onready var button = $"../ElCatrinButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

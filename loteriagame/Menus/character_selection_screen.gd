@@ -38,7 +38,7 @@ func _on_confirm_button_pressed():
 		$Label.text = "Choose Character for Player "+str(player_id)
 		$ConfirmButton.hide()
 
-func _on_cigar_guy_button_pressed():
+func _on_el_catrin_button_pressed():
 	type = "res://Characters/player_test.tscn"
 	$ConfirmButton.show()
 

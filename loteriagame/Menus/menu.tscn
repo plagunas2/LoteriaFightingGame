@@ -88,6 +88,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oem55")
 theme_override_font_sizes/font_size = 20
+disabled = true
 text = "PLAY ONLINE"
 
 [node name="MarginContainer3" type="MarginContainer" parent="TitleScreen/VBoxContainer"]
@@ -225,11 +226,15 @@ offset_top = 68.0
 offset_right = 49.5
 offset_bottom = 91.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "TITLE TBD"
+theme_override_fonts/font = ExtResource("2_oem55")
+theme_override_font_sizes/font_size = 40
+text = "LOTERIA 
+FIGHTING GAME"
+horizontal_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_4o4ty")
+volume_db = -4.685
 autoplay = true
 
 [connection signal="pressed" from="TitleScreen/VBoxContainer/MarginContainer2/OnlineButton" to="." method="_on_online_button_pressed"]
