@@ -16,6 +16,8 @@ var damage_state: State
 var kick_state: State
 @export
 var duck_state: State
+@export
+var smoke_state: State
 
 func enter() -> void:
 	super()

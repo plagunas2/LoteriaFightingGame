@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=98 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Characters/StateMachine/States/move.gd" id="7_csewp"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/punch.gd" id="8_gu08w"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
+[ext_resource type="Texture2D" uid="uid://cmtmj6io5q45" path="res://Assets/ElCatrin/catrinPowerupWIP.png" id="10_1x3ne"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="13_qhp35"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/damage.gd" id="14_0xxa0"]
@@ -23,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://blejxbdpsa6hw" path="res://Assets/SoundEffects/punch.mp3" id="18_ednej"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
 [ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/smoke.gd" id="21_dxi33"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
@@ -218,6 +220,86 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("4_a5mfj")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkd1v"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fn5f"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeeep"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb2mi"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rwv3"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yblvw"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoynt"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy704"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgccm"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewqa3"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5lc1"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj0wm"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3opb"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvahr"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcig6"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajurp"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mdjo"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1024, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8oy4"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1088, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e48s"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1152, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d54j6"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1216, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hjsb1"]
 animations = [{
 "frames": [{
@@ -405,6 +487,71 @@ animations = [{
 "loop": true,
 "name": &"basicPunch",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkd1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fn5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeeep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb2mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rwv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yblvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoynt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy704")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgccm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewqa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5lc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj0wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3opb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvahr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcig6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajurp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mdjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8oy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e48s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d54j6")
+}],
+"loop": true,
+"name": &"smokePower",
+"speed": 12.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
@@ -459,7 +606,9 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Idle"
+animation = &"smokePower"
+frame = 13
+frame_progress = 0.0649908
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -471,7 +620,7 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state", "duck_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state", "duck_state", "smoke_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
@@ -480,6 +629,7 @@ punch_state = NodePath("../Punch")
 damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
 duck_state = NodePath("../Duck")
+smoke_state = NodePath("../Smoke")
 animation_name = "Idle"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state", "damage_state")]
@@ -531,6 +681,10 @@ animation_name = "FallKick"
 script = ExtResource("19_c6ed6")
 idle_state = NodePath("../Idle")
 animation_name = "Duck"
+
+[node name="Smoke" type="Node" parent="StateMachine"]
+script = ExtResource("21_dxi33")
+animation_name = "smokePower"
 
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
 
