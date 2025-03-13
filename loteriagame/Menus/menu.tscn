@@ -232,6 +232,10 @@ text = "LOTERIA
 FIGHTING GAME"
 horizontal_alignment = 1
 
+[node name="SlowMusicTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_4o4ty")
 volume_db = -4.685
@@ -249,3 +253,4 @@ autoplay = true
 [connection signal="pressed" from="OfflineScreen/FourButton" to="." method="_on_four_button_pressed"]
 [connection signal="pressed" from="OfflineScreen/OfflineStartButton" to="." method="_on_offline_start_button_pressed"]
 [connection signal="pressed" from="OfflineScreen/OfflineBackButton" to="." method="_on_offline_back_button_pressed"]
+[connection signal="timeout" from="SlowMusicTimer" to="." method="_on_slow_music_timer_timeout"]
