@@ -1,5 +1,5 @@
 extends State
-
+class_name DuckState
 @export
 var idle_state: State
 	

@@ -1,4 +1,5 @@
 extends State
+class_name SmokeState
 
 @export
 var idle_state: State
