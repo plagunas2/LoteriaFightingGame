@@ -1,6 +1,6 @@
 extends State
 
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6 #4.5
 const SPEED = 5.0
 
 @export
@@ -12,12 +12,8 @@ var move_state: State
 @export
 var damage_state: State
 
-@export
-var jump_force: float = 900.0
-
 func enter() -> void:
 	super()
-	#parent.velocity.y = -jump_force
 	parent.velocity.y = JUMP_VELOCITY
 
 func process_physics(delta: float) -> State:
