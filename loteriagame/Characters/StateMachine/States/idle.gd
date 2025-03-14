@@ -40,6 +40,8 @@ func process_input(event: InputEvent) -> State:
 		return kick_state
 	if Input.is_action_just_pressed("down"+parent.id):
 		return duck_state
+	if Input.is_action_just_pressed("test"+parent.id):
+		return smoke_state
 	return null
 
 func process_physics(delta: float) -> State:

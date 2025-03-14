@@ -682,8 +682,9 @@ script = ExtResource("19_c6ed6")
 idle_state = NodePath("../Idle")
 animation_name = "Duck"
 
-[node name="Smoke" type="Node" parent="StateMachine"]
+[node name="Smoke" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("21_dxi33")
+idle_state = NodePath("../Idle")
 animation_name = "smokePower"
 
 [node name="OutOfBoundsTimer" type="Timer" parent="."]
