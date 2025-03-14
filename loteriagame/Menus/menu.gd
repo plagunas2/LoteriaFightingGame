@@ -9,6 +9,13 @@ var host: bool
 var type
 var num_players = 0
 
+#music stuff
+var reverb = AudioEffectReverb.new()  # Create a new reverb effect
+
+func _process(delta):
+	if Input.is_action_just_pressed("test"):
+		slow_music()
+
 #MultiplayerScreen
 func _on_host_button_pressed():
 	host = true
@@ -72,3 +79,12 @@ func _on_offline_back_button_pressed():
 func _on_offline_start_button_pressed():
 	emit_signal("startOfflineGame", num_players)
 	emit_signal("characterType", type)
+
+func slow_music(time = 3.0):
+	$SlowMusicTimer.start(time)
+	$MusicPlayer.pitch_scale = 0.5
+	AudioServer.add_bus_effect(0,reverb)
+
+func _on_slow_music_timer_timeout():
+	$MusicPlayer.pitch_scale = 1.0
+	AudioServer.remove_bus_effect(0,0)

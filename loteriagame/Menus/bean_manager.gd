@@ -2,7 +2,7 @@ extends Node
 
 #@onready var character_selection = get_parent()
 @onready var bean = "res://Assets/Cursor/bean.tscn"
-@onready var character_button = $"../CigarGuyButton"
+@onready var character_button = $"../ElCatrinButton"
 #var num_players
 
 

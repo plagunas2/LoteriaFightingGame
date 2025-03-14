@@ -45,6 +45,7 @@ func process_physics(delta: float) -> State:
 	
 	if parent.is_on_floor():
 		parent.velocity.y = 0  # Reset vertical velocity to avoid bouncing
+		$"../../Land".play()
 		if direction != Vector3.ZERO:
 			return move_state
 		return idle_state
