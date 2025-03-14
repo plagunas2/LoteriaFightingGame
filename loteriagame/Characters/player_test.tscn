@@ -1,24 +1,90 @@
-[gd_scene load_steps=52 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=100 format=3 uid="uid://buqk56wkmvgct"]
 
-[ext_resource type="Script" path="res://Characters/player_test.gd" id="1_um4m4"]
+[ext_resource type="Script" path="res://Characters/player_test.gd" id="1_psc3g"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
 [ext_resource type="Texture2D" uid="uid://praaqpqekx76" path="res://Assets/ElCatrin/catrinJumpWIP.png" id="2_gnvm8"]
+[ext_resource type="Texture2D" uid="uid://fwjy7ppxw3ok" path="res://Assets/ElCatrin/catrinDamage.png" id="2_k0xgu"]
+[ext_resource type="Texture2D" uid="uid://kogyqr3n7hy7" path="res://Assets/ElCatrin/catrinDuck.png" id="3_oj8ai"]
 [ext_resource type="Texture2D" uid="uid://dhjldpi0fk86o" path="res://Assets/ElCatrin/finalCatrinWalk.png" id="3_qridd"]
 [ext_resource type="Texture2D" uid="uid://nejb3fwck4ut" path="res://Assets/ElCatrin/catrinPunch.png" id="4_a5mfj"]
 [ext_resource type="Texture2D" uid="uid://dtivohyqb7pk5" path="res://Assets/ElCatrin/catrinKick.png" id="4_dugaf"]
+[ext_resource type="Texture2D" uid="uid://da361lb0qqyn6" path="res://Assets/ElCatrin/catrinFallKick.png" id="4_o0ybm"]
 [ext_resource type="Script" path="res://Characters/StateMachine/state_machine.gd" id="5_cn4kh"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/idle.gd" id="6_ql63x"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/move.gd" id="7_csewp"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/punch.gd" id="8_gu08w"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/fall.gd" id="9_rboho"]
+[ext_resource type="Texture2D" uid="uid://cmtmj6io5q45" path="res://Assets/ElCatrin/catrinPowerupWIP.png" id="10_1x3ne"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/jump.gd" id="10_q603b"]
 [ext_resource type="Script" path="res://Characters/StateMachine/States/kick.gd" id="13_qhp35"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/damage.gd" id="14_0xxa0"]
+[ext_resource type="Texture2D" uid="uid://dvxydc7fypeor" path="res://Assets/UI/healthbarUnder.png" id="14_yoxc8"]
+[ext_resource type="Texture2D" uid="uid://0v5rtht0woo5" path="res://Assets/UI/healthbarProgress.png" id="15_qkdcf"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/fall_kick.gd" id="17_d6te5"]
+[ext_resource type="AudioStream" uid="uid://blejxbdpsa6hw" path="res://Assets/SoundEffects/punch.mp3" id="18_ednej"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/duck.gd" id="19_c6ed6"]
+[ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="19_qky2l"]
+[ext_resource type="Script" path="res://Characters/StateMachine/States/smoke.gd" id="21_dxi33"]
+[ext_resource type="AudioStream" uid="uid://b4y2aklub6a3d" path="res://Assets/SoundEffects/wind.mp3" id="23_pfwc5"]
+[ext_resource type="AudioStream" uid="uid://dl0ap7xatvljx" path="res://Assets/SoundEffects/land.mp3" id="24_0cu71"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bkk8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_elc8b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ggl"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pnm0"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ds28"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ixmk"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xorpp"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b7r5"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ichu"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmhko"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncyri"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4jvx"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egiui"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0troq"]
+atlas = ExtResource("2_k0xgu")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52hl7"]
+atlas = ExtResource("3_oj8ai")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nax1h"]
 atlas = ExtResource("2_gnvm8")
@@ -31,6 +97,10 @@ region = Rect2(256, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3dw0"]
 atlas = ExtResource("2_gnvm8")
 region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xib0"]
+atlas = ExtResource("4_o0ybm")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1pr5"]
 atlas = ExtResource("2_8ws8c")
@@ -152,8 +222,137 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("4_a5mfj")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkd1v"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fn5f"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeeep"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb2mi"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rwv3"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yblvw"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoynt"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy704"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgccm"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewqa3"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5lc1"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj0wm"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3opb"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvahr"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcig6"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajurp"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mdjo"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1024, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8oy4"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1088, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e48s"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1152, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d54j6"]
+atlas = ExtResource("10_1x3ne")
+region = Rect2(1216, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hjsb1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ggl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pnm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ds28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ixmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xorpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b7r5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ichu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmhko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncyri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4jvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egiui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0troq")
+}],
+"loop": true,
+"name": &"Damage",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52hl7")
+}],
+"loop": true,
+"name": &"Duck",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nax1h")
@@ -170,6 +369,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7xib0")
+}],
+"loop": true,
+"name": &"FallKick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f1pr5")
 }, {
 "duration": 1.0,
@@ -183,7 +390,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -282,6 +489,71 @@ animations = [{
 "loop": true,
 "name": &"basicPunch",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkd1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fn5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeeep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb2mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rwv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yblvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoynt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy704")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgccm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewqa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5lc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj0wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3opb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvahr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcig6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajurp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mdjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8oy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e48s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d54j6")
+}],
+"loop": true,
+"name": &"smokePower",
+"speed": 12.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fadj4"]
@@ -292,14 +564,36 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="ElCatrinTest" type="CharacterBody3D"]
-script = ExtResource("1_um4m4")
+[node name="ElCatrin" type="CharacterBody3D"]
+script = ExtResource("1_psc3g")
 
-[node name="HitBox" type="Area3D" parent="."]
+[node name="PunchHitBox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.458825, 0.0850431, 0.0204082)
+[node name="HitCollision" type="CollisionShape3D" parent="PunchHitBox"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.693561, 0.40684, -0.0619735)
 shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
+
+[node name="KickHitBox" type="Area3D" parent="."]
+
+[node name="HitCollision" type="CollisionShape3D" parent="KickHitBox"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.79314, 0.000153244, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
+
+[node name="FallKickHitBox1" type="Area3D" parent="."]
+
+[node name="HitCollision" type="CollisionShape3D" parent="FallKickHitBox1"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.67329, -0.0984662, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
+
+[node name="FallKickHitBox2" type="Area3D" parent="."]
+
+[node name="HitCollision" type="CollisionShape3D" parent="FallKickHitBox2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.718553, -0.0984662, 0.0204082)
+shape = SubResource("BoxShape3D_4mnxw")
+disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1bkk8")
@@ -309,15 +603,14 @@ visible = false
 mesh = SubResource("CapsuleMesh_elc8b")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.64753)
-
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0620339, 0)
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_hjsb1")
-animation = &"Kick"
+animation = &"smokePower"
+frame = 13
+frame_progress = 0.0649908
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
@@ -329,21 +622,25 @@ replication_config = SubResource("SceneReplicationConfig_fadj4")
 script = ExtResource("5_cn4kh")
 starting_state = NodePath("Fall")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "kick_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "punch_state", "damage_state", "kick_state", "duck_state", "smoke_state")]
 script = ExtResource("6_ql63x")
 fall_state = NodePath("../Fall")
 jump_state = NodePath("../Jump")
 move_state = NodePath("../Move")
 punch_state = NodePath("../Punch")
+damage_state = NodePath("../Damage")
 kick_state = NodePath("../Kick")
+duck_state = NodePath("../Duck")
+smoke_state = NodePath("../Smoke")
 animation_name = "Idle"
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "punch_state", "damage_state")]
 script = ExtResource("7_csewp")
 fall_state = NodePath("../Fall")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 punch_state = NodePath("../Punch")
+damage_state = NodePath("../Damage")
 animation_name = "Walk"
 
 [node name="Punch" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
@@ -351,20 +648,76 @@ script = ExtResource("8_gu08w")
 idle_state = NodePath("../Idle")
 animation_name = "basicPunch"
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "fall_kick_state", "damage_state")]
 script = ExtResource("9_rboho")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+fall_kick_state = NodePath("../FallKick")
+damage_state = NodePath("../Damage")
 animation_name = "Fall"
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "damage_state")]
 script = ExtResource("10_q603b")
 fall_state = NodePath("../Fall")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+damage_state = NodePath("../Damage")
 animation_name = "Jump"
 
 [node name="Kick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("13_qhp35")
 idle_state = NodePath("../Idle")
 animation_name = "Kick"
+
+[node name="Damage" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("14_0xxa0")
+idle_state = NodePath("../Idle")
+animation_name = "Damage"
+
+[node name="FallKick" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("17_d6te5")
+idle_state = NodePath("../Idle")
+animation_name = "FallKick"
+
+[node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("19_c6ed6")
+idle_state = NodePath("../Idle")
+animation_name = "Duck"
+
+[node name="Smoke" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("21_dxi33")
+idle_state = NodePath("../Idle")
+animation_name = "smokePower"
+
+[node name="OutOfBoundsTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 192.0
+offset_bottom = 30.0
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("14_yoxc8")
+texture_progress = ExtResource("15_qkdcf")
+
+[node name="Punch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("18_ednej")
+
+[node name="Smoking" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_pfwc5")
+
+[node name="Land" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("24_0cu71")
+
+[node name="PlayerName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33363, 0)
+text = "P1"
+font = ExtResource("19_qky2l")
+
+[connection signal="body_entered" from="PunchHitBox" to="StateMachine/Punch" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="KickHitBox" to="StateMachine/Kick" method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="FallKickHitBox1" to="StateMachine/FallKick" method="_on_fall_kick_hit_box_1_body_entered"]
+[connection signal="body_entered" from="FallKickHitBox2" to="StateMachine/FallKick" method="_on_fall_kick_hit_box_2_body_entered"]
+[connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]

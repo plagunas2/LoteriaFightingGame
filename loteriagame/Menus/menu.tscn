@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwypnuob3fudy"]
+[gd_scene load_steps=6 format=3 uid="uid://dwypnuob3fudy"]
 
 [ext_resource type="Script" path="res://Menus/menu.gd" id="1_wg3bj"]
+[ext_resource type="Texture2D" uid="uid://c5nskh2qjf6gi" path="res://Assets/UI/sarapeBackground1.jpg" id="2_nbegu"]
+[ext_resource type="FontFile" uid="uid://cmq5p2dy7pqmc" path="res://Assets/Fonts/Kenney Thick.ttf" id="2_oem55"]
+[ext_resource type="AudioStream" uid="uid://ds3kenkufnad0" path="res://Assets/Music/latin-celebration-time-uplifting-loop-284480.mp3" id="4_4o4ty"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ws106"]
 properties/0/path = NodePath(".:visible")
@@ -9,18 +12,106 @@ properties/0/replication_mode = 1
 
 [node name="Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_wg3bj")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.998046, 0.751068, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 226.0
+offset_top = -219.0
+offset_right = 413.0
+offset_bottom = 141.0
+rotation = 0.882733
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_nbegu")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -338.0
+offset_right = 190.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.882733
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_nbegu")
+flip_h = true
+
 [node name="TitleScreen" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -50.5
+offset_right = 118.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="OnlineButton" type="Button" parent="TitleScreen/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oem55")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "PLAY ONLINE"
+
+[node name="MarginContainer3" type="MarginContainer" parent="TitleScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="OfflineButton" type="Button" parent="TitleScreen/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oem55")
+theme_override_font_sizes/font_size = 20
+text = "PLAY OFFLINE"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="QuitButton" type="Button" parent="TitleScreen/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oem55")
+theme_override_font_sizes/font_size = 20
+text = "QUIT"
 
 [node name="MultiplayerScreen" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -54,12 +145,112 @@ offset_right = 168.0
 offset_bottom = 168.0
 placeholder_text = "Enter address here"
 
+[node name="OnlineBackButton" type="Button" parent="MultiplayerScreen"]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 168.0
+offset_bottom = 424.0
+text = "BACK"
+
+[node name="OfflineScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -144.0
+offset_right = 85.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TwoButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_oem55")
+text = "TWO PLAYERS"
+autowrap_mode = 2
+
+[node name="ThreeButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 168.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_oem55")
+text = "THREE PLAYERS"
+autowrap_mode = 2
+
+[node name="FourButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 168.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("2_oem55")
+text = "FOUR PLAYERS"
+autowrap_mode = 2
+
+[node name="OfflineStartButton" type="Button" parent="OfflineScreen"]
+visible = false
+layout_mode = 0
+offset_top = 192.0
+offset_right = 168.0
+offset_bottom = 232.0
+theme_override_fonts/font = ExtResource("2_oem55")
+text = "CONFIRM"
+
+[node name="OfflineBackButton" type="Button" parent="OfflineScreen"]
+layout_mode = 0
+offset_top = 312.0
+offset_right = 168.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("2_oem55")
+text = "BACK"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ws106")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.5
+offset_top = 68.0
+offset_right = 49.5
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oem55")
+theme_override_font_sizes/font_size = 40
+text = "LOTERIA 
+FIGHTING GAME"
+horizontal_alignment = 1
+
+[node name="SlowMusicTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4o4ty")
+volume_db = -4.685
+autoplay = true
+
+[connection signal="pressed" from="TitleScreen/VBoxContainer/MarginContainer2/OnlineButton" to="." method="_on_online_button_pressed"]
+[connection signal="pressed" from="TitleScreen/VBoxContainer/MarginContainer3/OfflineButton" to="." method="_on_offline_button_pressed"]
+[connection signal="pressed" from="TitleScreen/VBoxContainer/MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="MultiplayerScreen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MultiplayerScreen/OnlineBackButton" to="." method="_on_online_back_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/TwoButton" to="." method="_on_two_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/ThreeButton" to="." method="_on_three_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/FourButton" to="." method="_on_four_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/OfflineStartButton" to="." method="_on_offline_start_button_pressed"]
+[connection signal="pressed" from="OfflineScreen/OfflineBackButton" to="." method="_on_offline_back_button_pressed"]
+[connection signal="timeout" from="SlowMusicTimer" to="." method="_on_slow_music_timer_timeout"]

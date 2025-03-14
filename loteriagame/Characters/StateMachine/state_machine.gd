@@ -10,8 +10,6 @@ var current_state: State
 func init(parent: Player) -> void:
 	for child in get_children():
 		if child is State:
-			#degbug
-			print(child)
 			child.parent = parent
 
 	# Initialize to the default state

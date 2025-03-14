@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://1a47jniwv0q7"]
+
+[ext_resource type="Texture2D" uid="uid://blc5213ldrlin" path="res://Assets/level_2_background.png" id="1_qp4wc"]
+[ext_resource type="Script" path="res://Levels/level_2.gd" id="1_yhogb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bfmlx"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_klx78"]
+sky_material = SubResource("ProceduralSkyMaterial_bfmlx")
+
+[sub_resource type="Environment" id="Environment_pa6jo"]
+background_mode = 2
+sky = SubResource("Sky_klx78")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xlus"]
+size = Vector3(24, 0.5, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gu1y2"]
+albedo_color = Color(0.364706, 0.294118, 0.00784314, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ptde"]
+size = Vector3(24, 0.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wpikn"]
+size = Vector3(1, 5, 2.54858)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qy2uj"]
+size = Vector3(1, 5.23853, 2.90375)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaujc"]
+size = Vector3(1, 5, 2.52808)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yh45s"]
+size = Vector3(1, 5.12708, 2.48242)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qu042"]
+size = Vector3(45.8721, 1, 7.29883)
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_yhogb")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 0.869479, 0.711783, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pa6jo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3xlus")
+surface_material_override/0 = SubResource("StandardMaterial3D_gu1y2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_5ptde")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 5.92202, -1.36661)
+texture_filter = 0
+texture = ExtResource("1_qp4wc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72234, 4.49061)
+
+[node name="Barrier" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2626, 0.659502, -0.0108643)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30012, 2, 0.0484619)
+shape = SubResource("BoxShape3D_wpikn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5402, 2.11926, 0.0314026)
+shape = SubResource("BoxShape3D_qy2uj")
+
+[node name="OutOfBounds" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2626, 2.6595, -0.0108643)
+shape = SubResource("BoxShape3D_kaujc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="OutOfBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4473, 2.82547, 0.00292969)
+shape = SubResource("BoxShape3D_yh45s")
+
+[node name="Void" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0626774, -0.0228138)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Void"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.25998, 0)
+shape = SubResource("BoxShape3D_qu042")
+
+[node name="Player1StartPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 0)
+
+[node name="Player2StartPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+
+[connection signal="body_entered" from="OutOfBounds" to="." method="_on_out_of_bounds_body_entered"]
+[connection signal="body_exited" from="OutOfBounds" to="." method="_on_out_of_bounds_body_exited"]
+[connection signal="body_entered" from="Void" to="." method="_on_void_body_entered"]
