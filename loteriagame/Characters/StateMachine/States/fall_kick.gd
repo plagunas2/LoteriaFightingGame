@@ -14,7 +14,7 @@ func process_frame(delta: float) -> State:
 
 func _on_fall_kick_hit_box_1_body_entered(body: Node3D) -> void:
 	if body is Player and body.id != parent.id:
-		if body.get_node("StateMachine").current_state is not DamageState:
+		if body.get_node("StateMachine").current_state is not DamageState and body.get_node("StateMachine").current_state is not DuckState and body.get_node("StateMachine").current_state is not SmokeState:
 			print("player " + body.id + " has been kicked!")
 			body.take_damage(4)
 			$"../../Punch".play()
