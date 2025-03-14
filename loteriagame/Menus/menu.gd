@@ -13,7 +13,7 @@ var num_players = 0
 var reverb = AudioEffectReverb.new()  # Create a new reverb effect
 
 func _process(delta):
-	if Input.is_action_just_pressed("test"):
+	if Input.is_action_just_pressed("test1"):
 		slow_music()
 
 #MultiplayerScreen

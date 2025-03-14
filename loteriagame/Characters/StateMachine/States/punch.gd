@@ -1,4 +1,5 @@
 extends State
+class_name PunchState
 
 @export
 var idle_state: State
@@ -18,10 +19,10 @@ func process_frame(delta: float) -> State:
 #func _on_animated_sprite_3d_animation_finished() -> State: NOT WORKING
 	#print("punch finished!")
 	#return idle_state
-	
+	# [DamageState, KickState, PunchState, FallKickState, DuckState, SmokeState]
 func _on_hit_box_body_entered(body: Node3D) -> void: #punch damage
 	if body is Player and body.id != parent.id:
-		if body.get_node("StateMachine").current_state is not DamageState and body.get_node("StateMachine").current_state is not DuckState and body.get_node("StateMachine").current_state is not SmokeState:
+		if body.get_node("StateMachine").current_state is not DamageState and not KickState and not PunchState and not FallKickState and not DuckState and not SmokeState:
 			print("player " + body.id + "has been punched!")
 			if parent.animations.get_frame() == 4 or 5 or 6: #punching frames
 				body.take_damage(2)
