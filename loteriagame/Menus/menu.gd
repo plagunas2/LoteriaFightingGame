@@ -10,6 +10,7 @@ var type
 var num_players = 0
 
 #music stuff
+var music_is_slow = false
 var reverb = AudioEffectReverb.new()  # Create a new reverb effect
 
 func _process(delta):
@@ -81,10 +82,13 @@ func _on_offline_start_button_pressed():
 	emit_signal("characterType", type)
 
 func slow_music(time = 3.0):
-	$SlowMusicTimer.start(time)
-	$MusicPlayer.pitch_scale = 0.5
-	AudioServer.add_bus_effect(0,reverb)
+	if not music_is_slow:
+		music_is_slow = true
+		$SlowMusicTimer.start(time)
+		$MusicPlayer.pitch_scale = 0.5
+		AudioServer.add_bus_effect(0,reverb)
 
 func _on_slow_music_timer_timeout():
+	music_is_slow = false
 	$MusicPlayer.pitch_scale = 1.0
 	AudioServer.remove_bus_effect(0,0)
