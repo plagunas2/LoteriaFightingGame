@@ -16,6 +16,8 @@ var damage_state: State
 var kick_state: State
 @export
 var duck_state: State
+@export
+var smoke_state: State
 
 func enter() -> void:
 	super()
@@ -38,6 +40,8 @@ func process_input(event: InputEvent) -> State:
 		return kick_state
 	if Input.is_action_just_pressed("down"+parent.id):
 		return duck_state
+	if Input.is_action_just_pressed("test"+parent.id):
+		return smoke_state
 	return null
 
 func process_physics(delta: float) -> State:

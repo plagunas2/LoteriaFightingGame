@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvujq538dqqun"]
+
+[ext_resource type="Texture2D" uid="uid://pvyihvd0dwe1" path="res://Assets/SpecialAbilities/smokeParticle.png" id="1_73e2y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yiw23"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_73e2y")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ku4yh"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_b00el"]
+
+[node name="SmokeEffect" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_yiw23")
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ku4yh")
+draw_pass_1 = SubResource("QuadMesh_b00el")
