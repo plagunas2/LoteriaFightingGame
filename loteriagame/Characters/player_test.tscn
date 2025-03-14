@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://buqk56wkmvgct"]
+[gd_scene load_steps=100 format=3 uid="uid://buqk56wkmvgct"]
 
 [ext_resource type="Script" path="res://Characters/player_test.gd" id="1_psc3g"]
 [ext_resource type="Texture2D" uid="uid://0eta1u0lrbgs" path="res://Assets/ElCatrin/CatrinIdle1-sheet.png" id="2_8ws8c"]
