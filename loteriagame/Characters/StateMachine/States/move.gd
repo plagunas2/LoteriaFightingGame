@@ -14,7 +14,7 @@ var punch_state: State
 var damage_state: State
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('jump'+parent.id) and parent.is_on_floor():
+	if (Input.is_action_just_pressed('jump'+parent.id) or Input.is_action_just_pressed('up'+parent.id)) and parent.is_on_floor():
 		return jump_state
 	if Input.is_action_just_pressed("attack"+parent.id) and parent.is_on_floor():
 		return punch_state

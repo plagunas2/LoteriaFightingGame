@@ -24,7 +24,7 @@ func enter() -> void:
 	parent.velocity.x = 0
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('jump'+parent.id) and parent.is_on_floor():
+	if (Input.is_action_just_pressed('jump'+parent.id) or Input.is_action_just_pressed('up'+parent.id)) and parent.is_on_floor():
 		return jump_state
 	#if Input.is_action_just_pressed('left'+parent.id) or Input.is_action_just_pressed('right'+parent.id):
 		#return move_state
